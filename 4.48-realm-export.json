@@ -1,18 +1,30 @@
 {
+    "$schema": "https://jirutka.github.io/keycloak-json-schema/keycloak-realm-26.0.2.json",
     "id": "4.48",
     "realm": "4.48",
+    "displayName": "4.48 Years Ago",
     "enabled": true,
+    "rememberMe": true,
+    "resetPasswordAllowed": false,
+    "registrationAllowed": true,
+    "loginTheme": "keycloak",
     "clients": [
       {
         "clientId": "authentication",
         "directAccessGrantsEnabled": true,
-        "publicClient": false
+        "publicClient": false,
+        "name": "authentication",
+        "description": "Authentication Service"
       }
     ],
     "users": [
       {
         "username": "admin",
         "enabled": true,
+        "emailVerified": true,
+        "firstName": "Admin",
+        "lastName": "User",
+        "email": "robertdoneux@gmail.com",
         "credentials": [
           {
             "type": "password",
