@@ -1,0 +1,14 @@
+{
+    "$schema": "https://railway.com/railway.schema.json",
+    "deploy": {
+        "healthcheckPath": "/resources/master/admin/en",
+        "healthcheckTimeout": 300,
+        "sleepApplication": true,
+        "limitOverride": {
+            "containers": {
+                "cpu": 1,
+                "memoryBytes": 1073741824
+            }
+        }
+    }
+}
