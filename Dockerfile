@@ -11,8 +11,9 @@ RUN /opt/keycloak/bin/kc.sh build
 FROM quay.io/keycloak/keycloak:latest
 
 COPY java.config /etc/crypto-policies/back-ends/java.config
-
 COPY --from=builder /opt/keycloak/ /opt/keycloak/
+# Copy the realm JSON file into the container
+COPY 4.48-realm-export.json /opt/keycloak/data/import/4.48-realm-export.json
 
 ENTRYPOINT ["/opt/keycloak/bin/kc.sh"]
 
