@@ -16,7 +16,6 @@ pipeline {
         stage("Initialise") {
             steps {
                 script {
-                    // Define environmentMap as a global variable in the script scope
                     env.environmentMap = [
                         'Development': '9e3e62af-71b9-4da9-ae87-a0942c0b1150',
                         'Staging': '63782922-eeb7-41ca-87ba-a3c7bbd08f16',
