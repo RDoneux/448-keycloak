@@ -30,7 +30,7 @@ pipeline {
                 script {
                     sh 'npm i @railway/cli'
                     env.PATH = "${env.WORKSPACE}/node_modules/.bin:${env.PATH}"
-                    sh "railway up --detach --service keycloak --environment ${environnmentMap[params.Environment]}"
+                    sh "railway up --detach --service keycloak --environment ${environmentMap[params.Environment]}"
                 }
             }
         }
