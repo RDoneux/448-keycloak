@@ -11,7 +11,9 @@ pipeline {
             steps {
                 script {
                         def envVariables = [
-                            [key: "TEST_FROM_JENKINS", value: "test-variable"],
+                            [key: "KC_DB", value: "postgres"],
+                            [key: "KC_DB_POOL_MIN_SIZE", value: "0"],
+                            [key: "KC_DB_URL", value: "jdbc:postgresql://${{Postgres.POSTGRES_PRIVATE_HOST}}:${{Postgres.POSTGRES_PRIVATE_PORT}}/${{Postgres.POSTGRES_DATABASE}}"]
                         ]
 
                         envVariables.each { envVar ->
