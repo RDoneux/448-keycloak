@@ -1,3 +1,5 @@
+import groovy.json.JsonOutput
+
 pipeline {
     agent any
     environment {
@@ -9,7 +11,6 @@ pipeline {
         stage('Set Railway Environment Variables') {
             steps {
                 script {
-                        import groovy.json.JsonOutput
                         def envVariables = [
                             [key: "TEST", value: "test-variable"],
                         ]
