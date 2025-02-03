@@ -14,21 +14,24 @@ pipeline {
                     ]
 
                     envVariables.each { envVar ->
-                        sh """
-                        curl -X POST "https://backboard.railway.app/graphql/v2" \
-                            -H "Authorization: Bearer ${RAILWAY_API_TOKEN}" \
-                            -H "Content-Type: application/json" \
-                            --data '{
-                                "query": "mutation SetVariable(\$input: VariableInput!) { variableUpsert(input: \$input) { id key value } }",
-                                "variables": {
-                                    "input": {
-                                        "projectId": "${RAILWAY_PROJECT_ID}",
-                                        "key": "${envVar.key}",
-                                        "value": "${envVar.value}"
+                       sh """
+                            curl -X POST "https://backboard.railway.app/graphql/v2" \
+                                -H "Authorization: Bearer ${RAILWAY_API_TOKEN}" \
+                                -H "Content-Type: application/json" \
+                                --data '{
+                                    "query": "mutation SetVariable(\$input: VariableInput!) { 
+                                        variableUpsert(input: \$input) { id key value } 
+                                    }",
+                                    "variables": {
+                                        "input": {
+                                            "projectId": "${RAILWAY_PROJECT_ID}",
+                                            "serviceId": "${RAILWAY_SERVICE_ID}",
+                                            "key": "${envVar.key}",
+                                            "value": "${envVar.value}"
+                                        }
                                     }
-                                }
-                            }'
-                        """
+                                }' -v
+                            """
                     }
                 }
             }
