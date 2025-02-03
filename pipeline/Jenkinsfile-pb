@@ -20,7 +20,7 @@ pipeline {
                               --header 'Authorization: Bearer ${RAILWAY_API_TOKEN}' \
                               --header 'Content-Type: application/json' \
                               --data '{
-                                "query": "mutation variableUpsert { variableUpsert(input: { projectId: \"${RAILWAY_PROJECT_ID}\", environmentId: \"${RAILWAY_ENVIRONMENT_ID}\", serviceId: \"${RAILWAY_SERVICE_ID}\", name: \"NEW_VARIABLE\", value: \"SECRET_VALUE\" }) }"}'
+                                "query": "mutation variableUpsert { variableUpsert(input: { projectId: \\"${RAILWAY_PROJECT_ID}\\", environmentId: \\"${RAILWAY_ENVIRONMENT_ID}\\", serviceId: \\"${RAILWAY_SERVICE_ID}\\", name: \\"NEW_VARIABLE\\", value: \\"SECRET_VALUE\\" }) }"}'
 
                         """
                         // envVariables.each { envVar ->
