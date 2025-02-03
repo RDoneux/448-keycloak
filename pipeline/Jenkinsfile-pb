@@ -31,7 +31,7 @@ pipeline {
                 script {
                     sh 'npm i @railway/cli'
                     env.PATH = "${env.WORKSPACE}/node_modules/.bin:${env.PATH}"
-                    sh "railway up --detach --service keycloak --environment ${env.environmentMap[params.Environment]}"
+                    sh "railway up --detach --service keycloak --environment ${env.environmentMap.get(params.Environment)}"
                 }
             }
         }
@@ -66,7 +66,7 @@ pipeline {
                               --header 'Authorization: Bearer ${RAILWAY_API_TOKEN}' \
                               --header 'Content-Type: application/json' \
                               --data '{
-                                "query": "mutation variableUpsert { variableUpsert(input: { projectId: \\"${RAILWAY_PROJECT_ID}\\", environmentId: \\"${env.environmentMap[params.Environment]}\\", serviceId: \\"${RAILWAY_SERVICE_ID}\\", name: \\"${envVar.key}\\", value: \\"${envVar.value}\\" }) }"}'
+                                "query": "mutation variableUpsert { variableUpsert(input: { projectId: \\"${RAILWAY_PROJECT_ID}\\", environmentId: \\"${env.environmentMap.get(params.Environment)}\\", serviceId: \\"${RAILWAY_SERVICE_ID}\\", name: \\"${envVar.key}\\", value: \\"${envVar.value}\\" }) }"}'
                         """
                     }
                 }
