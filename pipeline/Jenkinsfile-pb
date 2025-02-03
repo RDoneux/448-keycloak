@@ -31,6 +31,14 @@ pipeline {
                 script {
                     sh 'npm i @railway/cli'
                     env.PATH = "${env.WORKSPACE}/node_modules/.bin:${env.PATH}"
+
+                    def serviceExists = sh(script: "railway status --environment ${env.SELECTED_ENV_ID} | grep -q 'keycloak'", returnStatus: true) == 0
+                    if (!serviceExists) {
+                        sh "railway service create keycloak"
+                    } else {
+                        echo "Service 'keycloak' already exists. Skipping creation."
+                    }
+
                     sh "railway up --detach --service keycloak --environment ${env.SELECTED_ENV_ID}"
                 }
             }
