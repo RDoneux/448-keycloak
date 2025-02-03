@@ -16,28 +16,13 @@ pipeline {
                         ]
 
                         envVariables.each { envVar ->
-                            def payload = [
-                                query: "mutation SetVariable(\$input: VariableInput!) { variableUpsert(input: \$input) { id key value } }",
-                                variables: [
-                                    input: [
-                                        projectId: RAILWAY_PROJECT_ID,
-                                        serviceId: RAILWAY_SERVICE_ID,
-                                        key: envVar.key,
-                                        value: envVar.value
-                                    ]
-                                ]
-                            ]
+                           sh '''
+curl -X POST "https://backboard.railway.app/graphql/v2" \
+     -H "Authorization: Bearer ${RAILWAY_API_TOKEN}" \
+     -H "Content-Type: application/json" \
+     --data \'{"query":"mutation SetVariable($input: VariableInput!) { variableUpsert(input: $input) { id key value } }","variables":{"input":{"projectId":"0a6675b6-4945-4272-87f5-2d1fd3de3ce1","serviceId":"f054bd82-825b-4ab3-b2d8-ec7eac99dfdc","key":"TEST","value":"test-variable"}}}\'
+'''
 
-                            def jsonPayload = JsonOutput.toJson(payload)
-
-                            println("Sending JSON Payload:\n${jsonPayload}")
-
-                            sh """
-                            curl -X POST "https://backboard.railway.app/graphql/v2" \
-                                -H "Authorization: Bearer ${RAILWAY_API_TOKEN}" \
-                                -H "Content-Type: application/json" \
-                                --data '${jsonPayload}'
-                            """
                         }
 
                 }
