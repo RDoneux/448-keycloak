@@ -16,7 +16,7 @@ pipeline {
         stage("Initalise") {
             steps {
                 script{
-                    def environmentMap = [
+                    environmentMap = [
                         'Development': '9e3e62af-71b9-4da9-ae87-a0942c0b1150',
                         'Staging': '63782922-eeb7-41ca-87ba-a3c7bbd08f16',
                         'Production': '1e28a9fd-5d6e-4848-9934-2c71a04b9866'
