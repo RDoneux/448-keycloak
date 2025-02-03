@@ -23,7 +23,6 @@ pipeline {
                                 "variables": {
                                     "input": {
                                         "projectId": "${RAILWAY_PROJECT_ID}",
-                                        "serviceId": "${RAILWAY_SERVICE_ID}",
                                         "key": "${envVar.key}",
                                         "value": "${envVar.value}"
                                     }
